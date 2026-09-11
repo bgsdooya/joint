@@ -34,17 +34,9 @@ header{
 .screen{display:none;padding:1.1rem}
 .screen.on{display:block}
 
-.today{background:#fff;border-radius:1.1rem;overflow:hidden;border:1px solid var(--line);margin-bottom:1.5rem}
-.today h2{margin:0;background:var(--teal);color:#fff;font-size:1.15rem;font-weight:700;padding:.85rem 1.1rem}
-.today ol{margin:0;padding:.4rem 0;list-style:none}
-.today li{display:flex;gap:.85rem;align-items:center;padding:.9rem 1.1rem;border-top:1px solid #EDF2F4}
-.today li:first-child{border-top:0}
-.num{flex:0 0 2.5rem;height:2.5rem;border-radius:50%;background:var(--teal);color:#fff;font-weight:800;font-size:1.15rem;display:flex;align-items:center;justify-content:center}
-.today b{display:block;font-size:1.15rem;font-weight:700}
-.today small{display:block;font-size:.92rem;color:#5D6E78;margin-top:.1rem}
-.hint{font-size:.95rem;color:#5D6E78;margin:-.8rem 0 1.5rem;padding:0 .25rem}
 
-h3.sec{font-size:1.05rem;margin:0 0 .7rem .25rem;color:#43606E;font-weight:700}
+h3.sec{font-size:1.35rem;margin:.4rem 0 .4rem .25rem;color:var(--ink);font-weight:800}
+.lead{margin:0 0 1.1rem .25rem;color:#5D6E78;font-size:.98rem}
 .weeks{display:grid;gap:.8rem}
 .week{width:100%;text-align:left;border:0;border-radius:1.1rem;padding:1.15rem 1.2rem;color:#fff;display:flex;align-items:center;gap:.9rem}
 .week .no{flex:0 0 3rem;height:3rem;border-radius:.85rem;background:rgba(255,255,255,.22);display:flex;align-items:center;justify-content:center;font-weight:800;font-size:1.05rem}
@@ -121,17 +113,8 @@ footer{margin-top:2rem;padding:1.3rem 1.1rem calc(1.3rem + env(safe-area-inset-b
 </header>
 
 <section id="home" class="screen on">
-  <div class="today">
-    <h2>매일 하실 3가지</h2>
-    <ol>
-      <li><div class="num">1</div><div><b>걷기</b><small>말은 되고 노래는 안 되는 속도로 10분부터</small></div></li>
-      <li><div class="num">2</div><div><b>앉았다 일어서기</b><small>의자에서 10회 · 엉덩이 먼저 뒤로</small></div></li>
-      <li><div class="num">3</div><div><b>벽 잡고 한 발로 서기</b><small>양쪽 30초씩 · 꼭 잡고 하세요</small></div></li>
-    </ol>
-  </div>
-  <p class="hint">세 가지만 매일 하셔도 충분합니다.</p>
-
   <h3 class="sec">배운 내용 다시 보기</h3>
+  <p class="lead">회차를 누르면 그날 배운 내용이 모두 나옵니다</p>
   <div class="weeks">
     <button class="week w2" onclick="open_('w2')">
       <div class="no">2주</div>
