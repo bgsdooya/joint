@@ -66,12 +66,13 @@ h3.sec{font-size:1.05rem;margin:0 0 .7rem .25rem;color:#43606E;font-weight:700}
 .jump span{font-size:1.35rem}
 
 .slides{display:grid;gap:1rem}
-.slides img{width:100%;border-radius:.9rem;border:1px solid var(--line);background:#fff;scroll-margin-top:calc(var(--headh,0px) + 4.6rem)}
+.slides img{width:100%;height:auto;border-radius:.9rem;border:1px solid var(--line);background:#fff;scroll-margin-top:calc(var(--headh,0px) + 4.6rem)}
 .slides img.mark{border:3px solid #F0B429}
+.rot{margin:-.5rem 0 1rem;padding:.7rem .9rem;background:#E7EFF3;border-radius:.8rem;color:#3E5B69;font-size:.95rem;text-align:center}
 .count{text-align:center;color:#5D6E78;font-size:.95rem;padding:1.1rem 0 .3rem}
 
 .top{
-  position:fixed;right:1rem;bottom:calc(1.2rem + env(safe-area-inset-bottom));
+  position:fixed;left:1rem;bottom:calc(1.2rem + env(safe-area-inset-bottom));
   width:3.4rem;height:3.4rem;border-radius:50%;border:0;background:var(--ink);color:#fff;
   font-size:1.3rem;box-shadow:0 4px 14px rgba(18,56,79,.3);display:none;z-index:15;
 }
@@ -128,6 +129,7 @@ footer{margin-top:2rem;padding:1.3rem 1.1rem calc(1.3rem + env(safe-area-inset-b
     <b id="vtitle"></b>
   </div>
   <button class="jump" onclick="jump()">집에서 하실 운동 바로 보기 <span>↓</span></button>
+  <p class="rot">휴대폰을 옆으로 돌리면 더 크게 보입니다</p>
   <div class="slides" id="slides"></div>
   <p class="count" id="vcount"></p>
 </section>
