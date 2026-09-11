@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>운동교실</title>
+<meta name="theme-color" content="#12384F">
+<link rel="manifest" href="manifest.json">
+<link rel="apple-touch-icon" href="icons/icon-192.png">
+<style>
+:root{
+  --ink:#12384F; --teal:#1F6F78; --knee:#2C6E49; --hand:#1B5E8A;
+  --paper:#F4F7F9; --line:#D7E1E6; --scale:1;
+}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+html{font-size:calc(18px * var(--scale))}
+body{
+  margin:0;background:var(--paper);color:var(--ink);
+  font-family:-apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Malgun Gothic","맑은 고딕",sans-serif;
+  line-height:1.55;-webkit-text-size-adjust:100%;padding-bottom:4rem;
+}
+img{max-width:100%;display:block}
+button{font:inherit;color:inherit;cursor:pointer}
+
+header{
+  background:var(--ink);color:#fff;position:sticky;top:0;z-index:20;
+  padding:calc(1.1rem + env(safe-area-inset-top)) 1.1rem 1.1rem;
+}
+.brand{font-size:1.45rem;font-weight:800;letter-spacing:-.02em}
+.brand span{display:block;font-size:.82rem;font-weight:500;color:#9FC4D2;margin-top:.15rem}
+.sizer{position:absolute;right:1rem;top:calc(1.1rem + env(safe-area-inset-top));display:flex;gap:.4rem}
+.sizer button{width:2.4rem;height:2.4rem;border-radius:.7rem;border:0;background:#1F5069;color:#fff;font-size:1.05rem;font-weight:700}
+
+.screen{display:none;padding:1.1rem}
+.screen.on{display:block}
+
+.today{background:#fff;border-radius:1.1rem;overflow:hidden;border:1px solid var(--line);margin-bottom:1.5rem}
+.today h2{margin:0;background:var(--teal);color:#fff;font-size:1.15rem;font-weight:700;padding:.85rem 1.1rem}
+.today ol{margin:0;padding:.4rem 0;list-style:none}
+.today li{display:flex;gap:.85rem;align-items:center;padding:.9rem 1.1rem;border-top:1px solid #EDF2F4}
+.today li:first-child{border-top:0}
+.num{flex:0 0 2.5rem;height:2.5rem;border-radius:50%;background:var(--teal);color:#fff;font-weight:800;font-size:1.15rem;display:flex;align-items:center;justify-content:center}
+.today b{display:block;font-size:1.15rem;font-weight:700}
+.today small{display:block;font-size:.92rem;color:#5D6E78;margin-top:.1rem}
+.hint{font-size:.95rem;color:#5D6E78;margin:-.8rem 0 1.5rem;padding:0 .25rem}
+
+h3.sec{font-size:1.05rem;margin:0 0 .7rem .25rem;color:#43606E;font-weight:700}
+.weeks{display:grid;gap:.8rem}
+.week{width:100%;text-align:left;border:0;border-radius:1.1rem;padding:1.15rem 1.2rem;color:#fff;display:flex;align-items:center;gap:.9rem}
+.week .no{flex:0 0 3rem;height:3rem;border-radius:.85rem;background:rgba(255,255,255,.22);display:flex;align-items:center;justify-content:center;font-weight:800;font-size:1.05rem}
+.week .tx{flex:1}
+.week .tx b{display:block;font-size:1.3rem;font-weight:800;letter-spacing:-.02em}
+.week .tx small{display:block;font-size:.9rem;opacity:.85;margin-top:.1rem}
+.week .go{font-size:1.5rem;opacity:.7}
+.w2{background:var(--teal)} .w3{background:var(--knee)} .w4{background:var(--hand)}
+
+.bar{position:sticky;top:var(--headh,0px);z-index:15;background:var(--paper);padding:.6rem 0 .8rem;margin:-.6rem 0 0;display:flex;align-items:center;gap:.8rem;box-shadow:0 6px 8px -6px rgba(18,56,79,.18)}
+.back{border:0;background:var(--ink);color:#fff;border-radius:.9rem;padding:.85rem 1.2rem;font-size:1.1rem;font-weight:700}
+.bar b{font-size:1.1rem}
+
+.jump{
+  width:100%;border:0;border-radius:1rem;background:#FFF3D6;color:#7A5300;
+  border:2px solid #F0B429;padding:1rem 1.1rem;font-size:1.12rem;font-weight:800;
+  margin-bottom:1.2rem;display:flex;align-items:center;justify-content:space-between;gap:.6rem;
+}
+.jump span{font-size:1.35rem}
+
+.slides{display:grid;gap:1rem}
+.slides img{width:100%;border-radius:.9rem;border:1px solid var(--line);background:#fff;scroll-margin-top:calc(var(--headh,0px) + 4.6rem)}
+.slides img.mark{border:3px solid #F0B429}
+.count{text-align:center;color:#5D6E78;font-size:.95rem;padding:1.1rem 0 .3rem}
+
+.top{
+  position:fixed;right:1rem;bottom:calc(1.2rem + env(safe-area-inset-bottom));
+  width:3.4rem;height:3.4rem;border-radius:50%;border:0;background:var(--ink);color:#fff;
+  font-size:1.3rem;box-shadow:0 4px 14px rgba(18,56,79,.3);display:none;z-index:15;
+}
+.top.on{display:block}
+
+footer{margin-top:2rem;padding:1.3rem 1.1rem calc(1.3rem + env(safe-area-inset-bottom));border-top:1px solid var(--line);color:#5D6E78;font-size:.92rem;text-align:center}
+@media (prefers-reduced-motion:no-preference){
+  .screen.on{animation:in .18s ease-out}
+  @keyframes in{from{opacity:.4}to{opacity:1}}
+}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="brand">운동교실<span>양산시보건소 공공재활물리치료교실</span></div>
+  <div class="sizer">
+    <button onclick="zoom(-1)" aria-label="글씨 작게">가−</button>
+    <button onclick="zoom(1)" aria-label="글씨 크게">가+</button>
+  </div>
+</header>
+
+<section id="home" class="screen on">
+  <div class="today">
+    <h2>매일 하실 3가지</h2>
+    <ol>
+      <li><div class="num">1</div><div><b>걷기</b><small>말은 되고 노래는 안 되는 속도로 10분부터</small></div></li>
+      <li><div class="num">2</div><div><b>앉았다 일어서기</b><small>의자에서 10회 · 엉덩이 먼저 뒤로</small></div></li>
+      <li><div class="num">3</div><div><b>벽 잡고 한 발로 서기</b><small>양쪽 30초씩 · 꼭 잡고 하세요</small></div></li>
+    </ol>
+  </div>
+  <p class="hint">세 가지만 매일 하셔도 충분합니다.</p>
+
+  <h3 class="sec">배운 내용 다시 보기</h3>
+  <div class="weeks">
+    <button class="week w2" onclick="open_('w2')">
+      <div class="no">2주</div>
+      <div class="tx"><b>어깨와 고관절</b><small>전체 26장</small></div><div class="go">›</div>
+    </button>
+    <button class="week w3" onclick="open_('w3')">
+      <div class="no">3주</div>
+      <div class="tx"><b>무릎과 발목</b><small>전체 28장</small></div><div class="go">›</div>
+    </button>
+    <button class="week w4" onclick="open_('w4')">
+      <div class="no">4주</div>
+      <div class="tx"><b>손목과 손가락</b><small>전체 27장</small></div><div class="go">›</div>
+    </button>
+  </div>
+</section>
+
+<section id="view" class="screen">
+  <div class="bar">
+    <button class="back" onclick="home()">← 뒤로</button>
+    <b id="vtitle"></b>
+  </div>
+  <button class="jump" onclick="jump()">집에서 하실 운동 바로 보기 <span>↓</span></button>
+  <div class="slides" id="slides"></div>
+  <p class="count" id="vcount"></p>
+</section>
+
+<button class="top" id="topbtn" onclick="window.scrollTo({top:0,behavior:'smooth'})" aria-label="맨 위로">↑</button>
+
+<footer>
+  양산시보건소 · 양산제일병원 재활치료팀<br>
+  화면이 작으면 오른쪽 위 <b>가+</b>를 눌러 크게 보세요
+</footer>
+
+<script>
+var DATA = {
+  w2: { title:"2주차 어깨와 고관절", n:26, home:25 },
+  w3: { title:"3주차 무릎과 발목",   n:28, home:27 },
+  w4: { title:"4주차 손목과 손가락", n:27, home:23 }
+};
+var cur = null;
+function pad(i){ return i<10 ? "0"+i : ""+i; }
+
+function render(k){
+  var d = DATA[k], box = document.getElementById("slides");
+  cur = k;
+  document.getElementById("vtitle").textContent = d.title;
+  document.getElementById("vcount").textContent = "모두 " + d.n + "장";
+  box.innerHTML = "";
+  for (var i=1; i<=d.n; i++){
+    var img = document.createElement("img");
+    img.src = "img/" + k + "-" + pad(i) + ".jpg";
+    img.alt = d.title + " " + i + "장";
+    img.loading = i<=2 ? "eager" : "lazy";
+    img.width = 1280; img.height = 720;
+    if (i === d.home){ img.id = "homeprog"; img.className = "mark"; }
+    box.appendChild(img);
+  }
+  document.getElementById("home").classList.remove("on");
+  document.getElementById("view").classList.add("on");
+  window.scrollTo(0,0);
+}
+function showHome(){
+  cur = null;
+  document.getElementById("view").classList.remove("on");
+  document.getElementById("home").classList.add("on");
+  window.scrollTo(0,0);
+}
+function open_(k){ location.hash = k; }
+function home(){ if (location.hash) history.back(); else showHome(); }
+function jump(){
+  var el = document.getElementById("homeprog");
+  if (el) el.scrollIntoView({behavior:"smooth", block:"start"});
+}
+function route(){
+  var h = location.hash.replace("#","");
+  if (DATA[h]) render(h); else showHome();
+}
+function zoom(dir){
+  var s = parseFloat(localStorage.getItem("scale") || "1");
+  s = Math.min(1.6, Math.max(0.85, s + dir*0.15));
+  localStorage.setItem("scale", s);
+  document.documentElement.style.setProperty("--scale", s);
+  setTimeout(headh, 30);
+}
+window.addEventListener("scroll", function(){
+  document.getElementById("topbtn").classList.toggle("on", cur && window.scrollY > 700);
+});
+function headh(){
+  var h = document.querySelector("header").offsetHeight;
+  document.documentElement.style.setProperty("--headh", h + "px");
+}
+(function(){
+  var s = localStorage.getItem("scale");
+  if (s) document.documentElement.style.setProperty("--scale", s);
+  headh(); route();
+})();
+window.addEventListener("resize", headh);
+window.addEventListener("orientationchange", headh);
+window.addEventListener("hashchange", route);
+</script>
+</body>
+</html>
