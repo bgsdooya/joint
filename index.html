@@ -4,73 +4,80 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <title>운동교실</title>
-<meta name="theme-color" content="#12384F">
+<meta name="theme-color" content="#FFD65A">
 <link rel="manifest" href="manifest.json">
 <link rel="apple-touch-icon" href="icons/icon-192.png">
 <style>
 :root{
-  --ink:#12384F; --teal:#1F6F78; --knee:#2C6E49; --hand:#1B5E8A;
-  --paper:#F4F7F9; --line:#D7E1E6; --scale:1;
+  --ink:#123B32; --mint:#1D9E75; --mintbg:#E1F5EE; --mintdk:#085041;
+  --sun:#FFD65A; --sunbg:#FFF1C2; --brown:#412402;
+  --paper:#F6FBF9; --line:#DDEFE8; --muted:#6B8680; --scale:1;
 }
 *{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
 html{font-size:calc(18px * var(--scale))}
 body{
   margin:0;background:var(--paper);color:var(--ink);
   font-family:-apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Malgun Gothic","맑은 고딕",sans-serif;
-  line-height:1.55;-webkit-text-size-adjust:100%;padding-bottom:4rem;
+  line-height:1.55;word-break:keep-all;-webkit-text-size-adjust:100%;padding-bottom:4rem;
 }
 img{max-width:100%;display:block}
 button{font:inherit;color:inherit;cursor:pointer}
 
 header{
-  background:var(--ink);color:#fff;position:sticky;top:0;z-index:20;
+  background:var(--sun);color:var(--brown);position:sticky;top:0;z-index:20;
   padding:calc(1.1rem + env(safe-area-inset-top)) 1.1rem 1.1rem;
 }
 .brand{font-size:1.45rem;font-weight:800;letter-spacing:-.02em}
-.brand span{display:block;font-size:.82rem;font-weight:500;color:#9FC4D2;margin-top:.15rem}
+.brand span{display:block;font-size:.82rem;font-weight:500;color:#6B4A0B;margin-top:.15rem}
 .sizer{position:absolute;right:1rem;top:calc(1.1rem + env(safe-area-inset-top));display:flex;gap:.4rem}
-.sizer button{width:2.4rem;height:2.4rem;border-radius:.7rem;border:0;background:#1F5069;color:#fff;font-size:1.05rem;font-weight:700}
+.sizer button{width:2.4rem;height:2.4rem;border-radius:.7rem;border:0;background:var(--sunbg);color:var(--brown);font-size:1.05rem;font-weight:700}
 
 .screen{display:none;padding:1.1rem}
 .screen.on{display:block}
 
 
 h3.sec{font-size:1.35rem;margin:.4rem 0 .4rem .25rem;color:var(--ink);font-weight:800}
-.lead{margin:0 0 1.1rem .25rem;color:#5D6E78;font-size:.98rem}
+.lead{margin:0 0 1.1rem .25rem;color:var(--muted);font-size:.98rem}
 .weeks{display:grid;gap:.8rem}
-.week{width:100%;text-align:left;border:0;border-radius:1.1rem;padding:1.15rem 1.2rem;color:#fff;display:flex;align-items:center;gap:.9rem}
-.week .no{flex:0 0 3rem;height:3rem;border-radius:.85rem;background:rgba(255,255,255,.22);display:flex;align-items:center;justify-content:center;font-weight:800;font-size:1.05rem}
+.week{width:100%;text-align:left;border:0;border-radius:1.1rem;padding:1.15rem 1.2rem;display:flex;align-items:center;gap:.9rem}
+.week .no{flex:0 0 3rem;height:3rem;border-radius:.85rem;color:#fff;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:1.05rem}
 .week .tx{flex:1}
 .week .tx b{display:block;font-size:1.3rem;font-weight:800;letter-spacing:-.02em}
-.week .tx small{display:block;font-size:.9rem;opacity:.85;margin-top:.1rem}
-.week .go{font-size:1.5rem;opacity:.7}
-.w2{background:var(--teal)} .w3{background:var(--knee)} .w4{background:var(--hand)}
+.week .tx small{display:block;font-size:.9rem;margin-top:.1rem}
+.week .go{font-size:1.5rem}
+.w2{background:#E1F5EE;color:#085041} .w2 .no{background:#1D9E75} .w2 small,.w2 .go{color:#0F6E56}
+.w3{background:#EAF3DE;color:#27500A} .w3 .no{background:#639922} .w3 small,.w3 .go{color:#3B6D11}
+.w4{background:#E6F1FB;color:#0C447C} .w4 .no{background:#378ADD} .w4 small,.w4 .go{color:#185FA5}
 
-.bar{position:sticky;top:var(--headh,0px);z-index:15;background:var(--paper);padding:.6rem 0 .8rem;margin:-.6rem 0 0;display:flex;align-items:center;gap:.8rem;box-shadow:0 6px 8px -6px rgba(18,56,79,.18)}
-.back{border:0;background:var(--ink);color:#fff;border-radius:.9rem;padding:.85rem 1.2rem;font-size:1.1rem;font-weight:700}
+.bar{position:sticky;top:var(--headh,0px);z-index:15;background:var(--paper);padding:.6rem 0 .8rem;margin:-.6rem 0 0;display:flex;align-items:center;gap:.8rem;box-shadow:0 6px 8px -6px rgba(8,80,65,.15)}
+.back{white-space:nowrap;border:1px solid #9FE1CB;background:var(--mintbg);color:var(--mintdk);border-radius:.9rem;padding:.85rem 1.2rem;font-size:1.1rem;font-weight:700}
 .bar b{font-size:1.1rem}
 
 .jump{
-  width:100%;border:0;border-radius:1rem;background:#FFF3D6;color:#7A5300;
-  border:2px solid #F0B429;padding:1rem 1.1rem;font-size:1.12rem;font-weight:800;
+  width:100%;border:0;border-radius:1rem;background:var(--mint);color:#fff;
+  padding:1rem 1.1rem;font-size:1.12rem;font-weight:800;
   margin-bottom:1.2rem;display:flex;align-items:center;justify-content:space-between;gap:.6rem;
 }
 .jump span{font-size:1.35rem}
 
 .slides{display:grid;gap:1rem}
-.slides img{width:100%;height:auto;border-radius:.9rem;border:1px solid var(--line);background:#fff;scroll-margin-top:calc(var(--headh,0px) + 4.6rem)}
-.slides img.mark{border:3px solid #F0B429}
-.rot{margin:-.5rem 0 1rem;padding:.7rem .9rem;background:#E7EFF3;border-radius:.8rem;color:#3E5B69;font-size:.95rem;text-align:center}
-.count{text-align:center;color:#5D6E78;font-size:.95rem;padding:1.1rem 0 .3rem}
+.sw{overflow-x:auto;overflow-y:hidden;border-radius:.9rem;border:1px solid var(--line);background:#fff;scroll-margin-top:calc(var(--headh,0px) + 4.6rem);-webkit-overflow-scrolling:touch}
+.sw.mark{border:3px solid #F5B82E}
+.sw img{width:calc(100% * var(--iz,1));max-width:none;height:auto}
+.zhint{display:none;margin:-.5rem 0 1rem;padding:.7rem .9rem;background:#FFF3D6;border-radius:.8rem;color:#7A5300;font-size:.95rem;text-align:center;font-weight:700}
+html.zoomed .zhint{display:block}
+html.zoomed .rot{display:none}
+.rot{margin:-.5rem 0 1rem;padding:.7rem .9rem;background:#E3F4EE;border-radius:.8rem;color:#0F5A47;font-size:.95rem;text-align:center}
+.count{text-align:center;color:var(--muted);font-size:.95rem;padding:1.1rem 0 .3rem}
 
 .top{
   position:fixed;left:1rem;bottom:calc(1.2rem + env(safe-area-inset-bottom));
-  width:3.4rem;height:3.4rem;border-radius:50%;border:0;background:var(--ink);color:#fff;
-  font-size:1.3rem;box-shadow:0 4px 14px rgba(18,56,79,.3);display:none;z-index:15;
+  width:3.4rem;height:3.4rem;border-radius:50%;border:0;background:var(--mint);color:#fff;
+  font-size:1.3rem;box-shadow:0 4px 14px rgba(8,80,65,.3);display:none;z-index:15;
 }
 .top.on{display:block}
 
-footer{margin-top:2rem;padding:1.3rem 1.1rem calc(1.3rem + env(safe-area-inset-bottom));border-top:1px solid var(--line);color:#5D6E78;font-size:.92rem;text-align:center}
+footer{margin-top:2rem;padding:1.3rem 1.1rem calc(1.3rem + env(safe-area-inset-bottom));border-top:1px solid var(--line);color:var(--muted);font-size:.92rem;text-align:center}
 @media (prefers-reduced-motion:no-preference){
   .screen.on{animation:in .18s ease-out}
   @keyframes in{from{opacity:.4}to{opacity:1}}
@@ -90,8 +97,8 @@ footer{margin-top:2rem;padding:1.3rem 1.1rem calc(1.3rem + env(safe-area-inset-b
   .jump{padding:.6rem .9rem;font-size:.98rem;margin-bottom:.7rem}
   .rot{display:none}
   .slides{gap:.7rem}
-  .slides img{
-    scroll-margin-top:3.6rem;
+  .sw{scroll-margin-top:3.6rem}
+  html:not(.zoomed) .sw img{
     width:auto;height:auto;
     max-width:100%;
     max-height:calc(100vh - 4.4rem);
@@ -126,7 +133,7 @@ footer{margin-top:2rem;padding:1.3rem 1.1rem calc(1.3rem + env(safe-area-inset-b
     </button>
     <button class="week w4" onclick="open_('w4')">
       <div class="no">4주</div>
-      <div class="tx"><b>손목과 손가락</b><small>전체 27장</small></div><div class="go">›</div>
+      <div class="tx"><b>손목과 손가락</b><small>전체 26장</small></div><div class="go">›</div>
     </button>
   </div>
 </section>
@@ -138,6 +145,7 @@ footer{margin-top:2rem;padding:1.3rem 1.1rem calc(1.3rem + env(safe-area-inset-b
   </div>
   <button class="jump" onclick="jump()">집에서 하실 운동 바로 보기 <span>↓</span></button>
   <p class="rot">휴대폰을 옆으로 돌리면 더 크게 보입니다</p>
+  <p class="zhint">그림이 커졌습니다 · 옆으로 밀어서 보세요</p>
   <div class="slides" id="slides"></div>
   <p class="count" id="vcount"></p>
 </section>
@@ -145,7 +153,7 @@ footer{margin-top:2rem;padding:1.3rem 1.1rem calc(1.3rem + env(safe-area-inset-b
 <button class="top" id="topbtn" onclick="window.scrollTo({top:0,behavior:'smooth'})" aria-label="맨 위로">↑</button>
 
 <footer>
-  양산시보건소 · 양산제일병원 재활치료팀<br>
+  양산시보건소<br>양산제일병원 재활치료팀장 정용진<br>
   화면이 작으면 오른쪽 위 <b>가+</b>를 눌러 크게 보세요
 </footer>
 
@@ -153,25 +161,31 @@ footer{margin-top:2rem;padding:1.3rem 1.1rem calc(1.3rem + env(safe-area-inset-b
 var DATA = {
   w2: { title:"2주차 어깨와 고관절", n:26, home:25 },
   w3: { title:"3주차 무릎과 발목",   n:28, home:27 },
-  w4: { title:"4주차 손목과 손가락", n:27, home:23 }
+  w4: { title:"4주차 손목과 손가락", n:27, home:23, skip:[26] }
 };
 var cur = null;
+var fromHome = false;  // 첫 화면에서 눌러서 들어왔는지
 function pad(i){ return i<10 ? "0"+i : ""+i; }
 
 function render(k){
   var d = DATA[k], box = document.getElementById("slides");
   cur = k;
   document.getElementById("vtitle").textContent = d.title;
-  document.getElementById("vcount").textContent = "모두 " + d.n + "장";
+  var skip = d.skip || [];
+  document.getElementById("vcount").textContent = "모두 " + (d.n - skip.length) + "장";
   box.innerHTML = "";
   for (var i=1; i<=d.n; i++){
+    if (skip.indexOf(i) > -1) continue;
+    var wrap = document.createElement("div");
+    wrap.className = "sw";
     var img = document.createElement("img");
     img.src = "img/" + k + "-" + pad(i) + ".jpg";
     img.alt = d.title + " " + i + "장";
     img.loading = i<=2 ? "eager" : "lazy";
     img.width = 1280; img.height = 720;
-    if (i === d.home){ img.id = "homeprog"; img.className = "mark"; }
-    box.appendChild(img);
+    if (i === d.home){ wrap.id = "homeprog"; wrap.className = "sw mark"; }
+    wrap.appendChild(img);
+    box.appendChild(wrap);
   }
   document.getElementById("home").classList.remove("on");
   document.getElementById("view").classList.add("on");
@@ -183,8 +197,12 @@ function showHome(){
   document.getElementById("home").classList.add("on");
   window.scrollTo(0,0);
 }
-function open_(k){ location.hash = k; }
-function home(){ if (location.hash) history.back(); else showHome(); }
+function open_(k){ fromHome = true; location.hash = k; }
+function home(){
+  // 첫 화면에서 들어온 경우만 history.back(), 링크로 바로 들어왔으면 사이트 안에서 첫 화면으로
+  if (fromHome && location.hash){ fromHome = false; history.back(); }
+  else { history.replaceState(null, "", location.pathname + location.search); showHome(); }
+}
 function jump(){
   var el = document.getElementById("homeprog");
   if (el) el.scrollIntoView({behavior:"smooth", block:"start"});
@@ -197,8 +215,17 @@ function zoom(dir){
   var s = parseFloat(localStorage.getItem("scale") || "1");
   s = Math.min(1.6, Math.max(0.85, s + dir*0.15));
   localStorage.setItem("scale", s);
-  document.documentElement.style.setProperty("--scale", s);
+  applyScale(s);
   setTimeout(headh, 30);
+}
+function applyScale(s){
+  var r = document.documentElement;
+  // 글씨는 적당히만(최대 1.24배), 그림은 크게(최대 2.5배) — 글씨가 너무 커지면 버튼이 깨짐
+  r.style.setProperty("--scale", s <= 1 ? s : 1 + (s - 1) * 0.4);
+  // 글씨 1단계 키울 때마다 그림도 약 40%씩 커짐 (최대 2.5배)
+  var iz = s <= 1 ? 1 : 1 + (s - 1) * 2.5;
+  r.style.setProperty("--iz", iz);
+  r.classList.toggle("zoomed", iz > 1);
 }
 window.addEventListener("scroll", function(){
   document.getElementById("topbtn").classList.toggle("on", cur && window.scrollY > 700);
@@ -209,12 +236,15 @@ function headh(){
 }
 (function(){
   var s = localStorage.getItem("scale");
-  if (s) document.documentElement.style.setProperty("--scale", s);
+  if (s) applyScale(parseFloat(s));
   headh(); route();
 })();
 window.addEventListener("resize", headh);
 window.addEventListener("orientationchange", headh);
-window.addEventListener("hashchange", route);
+if ("serviceWorker" in navigator){
+  window.addEventListener("load", function(){ navigator.serviceWorker.register("sw.js"); });
+}
+window.addEventListener("hashchange", function(){ if (!location.hash) fromHome = false; route(); });
 </script>
 </body>
 </html>
