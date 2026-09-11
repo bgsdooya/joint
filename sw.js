@@ -1,5 +1,5 @@
 // 운동교실 서비스워커 — 슬라이드를 바꾸면 VERSION 숫자를 올려주세요
-var VERSION = "v2";
+var VERSION = "v3";
 var CACHE = "undong-" + VERSION;
 var FILES = [
   "./",
